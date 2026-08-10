@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Renato Rocha Souza — Curriculum Vitae</title>
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  color: #1e293b;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+
+/* ===== TOKENS ===== */
+:root {
+  --navy:    #0f172a;
+  --navy2:   #1e293b;
+  --navy3:   #162d4a;
+  --accent:  #38bdf8;
+  --accent2: #0ea5e9;
+  --white:   #ffffff;
+  --off:     #f8fafc;
+  --mid:     #f1f5f9;
+  --text:    #1e293b;
+  --muted:   #64748b;
+  --border:  #e2e8f0;
+  --r:       12px;
+  --sh:      0 4px 24px rgba(0,0,0,0.08);
+  --sh-sm:   0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* ===== LAYOUT ===== */
+.container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+@media (max-width: 640px) { .container { padding: 0 18px; } }
+
+.sec-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+}
+.sec-title {
+  font-size: 30px; font-weight: 800; line-height: 1.15;
+  letter-spacing: -0.5px; margin-bottom: 12px;
+}
+.sec-title.on-dark { color: #fff; }
+.sec-title.on-light { color: var(--navy); }
+.sec-sub { font-size: 15.5px; color: var(--muted); max-width: 600px; margin-bottom: 44px; }
+.sec-sub.on-dark { color: #94a3b8; }
+
+.fade-up { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.fade-up.in { opacity: 1; transform: none; }
+
+/* ===== NAV ===== */
+#topnav {
+  position: sticky; top: 0; z-index: 1000;
+  background: var(--navy);
+  height: 56px; display: flex; align-items: center;
+  justify-content: space-between; padding: 0 32px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.nav-brand { font-size: 14.5px; font-weight: 700; color: #fff; letter-spacing: -0.2px; white-space: nowrap; }
+.nav-links { display: flex; gap: 24px; }
+.nav-links a { font-size: 12.5px; font-weight: 500; color: #94a3b8; transition: color 0.18s; }
+.nav-links a:hover { color: var(--accent); }
+.nav-burger { display: none; background: none; border: none; color: #fff; font-size: 20px; cursor: pointer; line-height: 1; padding: 4px; }
+#navMobile {
+  display: none; flex-direction: column;
+  position: fixed; top: 56px; left: 0; right: 0;
+  background: #0d1a2e; padding: 16px 24px 24px;
+  gap: 14px; z-index: 998; border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+#navMobile.open { display: flex; }
+#navMobile a { font-size: 15px; font-weight: 500; color: #94a3b8; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+@media (max-width: 760px) {
+  .nav-links { display: none; }
+  .nav-burger { display: block; }
+}
+
+/* ===== HERO ===== */
+#hero {
+  background: linear-gradient(140deg, #0c1829 0%, var(--navy3) 55%, #0e2238 100%);
+  padding: 76px 0 64px; color: white;
+}
+.hero-grid {
+  display: grid; grid-template-columns: 1fr 200px;
+  gap: 48px; align-items: center;
+}
+.hero-eyebrow {
+  font-size: 11.5px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 18px;
+}
+.hero-name {
+  font-size: 46px; font-weight: 800; line-height: 1.05;
+  letter-spacing: -1px; margin-bottom: 10px;
+}
+.hero-role { font-size: 17px; font-weight: 500; color: #94a3b8; margin-bottom: 5px; }
+.hero-org  { font-size: 14.5px; font-weight: 600; color: var(--accent); margin-bottom: 26px; }
+.hero-summary {
+  font-size: 15px; color: #cbd5e1; line-height: 1.72;
+  max-width: 580px; margin-bottom: 28px;
+}
+.hero-stats { display: flex; gap: 28px; flex-wrap: wrap; margin-bottom: 28px; }
+.hero-stat-num  { font-size: 28px; font-weight: 800; color: #fff; line-height: 1; }
+.hero-stat-label { font-size: 10.5px; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 3px; }
+.hero-links { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.hero-link {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.11);
+  color: #cbd5e1; font-size: 12px; font-weight: 500;
+  padding: 6px 12px; border-radius: 6px; transition: all 0.18s;
+}
+.hero-link:hover { background: rgba(56,189,248,0.14); border-color: rgba(56,189,248,0.38); color: var(--accent); }
+.hero-langs { display: flex; gap: 8px; flex-wrap: wrap; }
+.lang-pill {
+  font-size: 11.5px; font-weight: 500; padding: 3px 10px; border-radius: 20px;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.10); color: #94a3b8;
+}
+.lang-pill.primary { border-color: rgba(56,189,248,0.35); color: var(--accent); }
+.hero-photo {
+  width: 200px; height: 200px; border-radius: 50%;
+  border: 3px solid rgba(56,189,248,0.38); overflow: hidden;
+  background: #1a2e4a; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+.hero-photo-initials {
+  font-size: 48px; font-weight: 800; color: var(--accent);
+  font-family: Georgia, serif; display: none; user-select: none;
+}
+@media (max-width: 680px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-photo { width: 120px; height: 120px; margin: 0 auto; }
+  .hero-name { font-size: 32px; }
+  .hero-photo-initials { font-size: 34px; }
+}
+
+/* ===== EXPERTISE ===== */
+#expertise { background: var(--off); padding: 76px 0; }
+.exp-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+.exp-card {
+  background: var(--white); border-radius: var(--r); padding: 24px 22px;
+  border: 1px solid var(--border); box-shadow: var(--sh-sm);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.exp-card:hover { transform: translateY(-3px); box-shadow: var(--sh); }
+.exp-card-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+.exp-card-body { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 12px; }
+.exp-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.exp-tag {
+  font-size: 10.5px; font-weight: 500; padding: 2px 8px;
+  border-radius: 20px; background: var(--mid); color: var(--muted);
+}
+@media (max-width: 820px) { .exp-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 520px) { .exp-grid { grid-template-columns: 1fr; } }
+
+/* ===== CAREER ===== */
+#career { background: var(--mid); padding: 76px 0; }
+.gantt-legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+.gl-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555; font-weight: 500; }
+.gl-swatch { width: 13px; height: 13px; border-radius: 3px; flex-shrink: 0; }
+.chart-scroll {
+  background: white; border-radius: 16px; box-shadow: 0 4px 28px rgba(0,0,0,0.09);
+  padding: 20px 12px 20px 0;
+}
+#gantt-tooltip {
+  position: fixed; background: rgba(10,12,26,0.96); color: #f0f0f0;
+  padding: 12px 15px; border-radius: 10px; font-size: 12.5px;
+  pointer-events: none; max-width: 310px; z-index: 9999; display: none;
+  line-height: 1.6; box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.07);
+}
+.tt-title { font-weight: 700; font-size: 13px; color: #fff; margin-bottom: 2px; }
+.tt-org   { color: #90b8f8; font-size: 12px; margin-bottom: 2px; }
+.tt-dates { color: #aaa; font-size: 11px; margin-bottom: 7px; font-style: italic; }
+.tt-desc  { color: #ccc; font-size: 11px; line-height: 1.55; }
+.tt-roles { margin-top: 6px; }
+.tt-role-row { font-size: 11px; color: #ddd; display: flex; gap: 6px; align-items: flex-start; margin-bottom: 3px; }
+.tt-role-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; margin-top: 3px; }
+
+/* ===== EDUCATION ===== */
+#education { background: var(--navy); padding: 76px 0; color: white; }
+.edu-timeline { position: relative; padding-left: 30px; max-width: 700px; }
+.edu-timeline::before {
+  content: ''; position: absolute; left: 6px; top: 10px; bottom: 10px;
+  width: 2px; background: rgba(56,189,248,0.22);
+}
+.edu-entry { position: relative; margin-bottom: 34px; }
+.edu-entry::before {
+  content: ''; position: absolute; left: -26px; top: 7px;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--accent); border: 2px solid var(--navy);
+}
+.edu-year  { font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 1px; margin-bottom: 3px; }
+.edu-deg   { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 3px; }
+.edu-inst  { font-size: 13.5px; color: #94a3b8; }
+.edu-link  { font-size: 11.5px; color: rgba(56,189,248,0.65); margin-top: 4px; display: inline-block; transition: color 0.15s; }
+.edu-link:hover { color: var(--accent); }
+.edu-postdoc-note {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 9px; font-size: 11.5px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.5px;
+  background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.25);
+  padding: 4px 10px; border-radius: 20px;
+}
+
+.certs-block { margin-top: 52px; }
+.certs-block h3 { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 18px; }
+.certs-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 11px; }
+.cert-card {
+  background: rgba(255,255,255,0.045); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px; padding: 13px 15px; transition: background 0.18s;
+}
+.cert-card:hover { background: rgba(56,189,248,0.07); }
+.cert-prov { font-size: 9.5px; font-weight: 700; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 4px; }
+.cert-name { font-size: 12.5px; color: #94a3b8; line-height: 1.4; }
+@media (max-width: 820px) { .certs-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 500px) { .certs-grid { grid-template-columns: 1fr; } }
+
+/* ===== RESEARCH ===== */
+#research { background: var(--off); padding: 76px 0; }
+.research-note { font-size: 12.5px; color: var(--muted); font-style: italic; margin-bottom: 28px; }
+.pub-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+.pub-card {
+  background: var(--white); border-radius: var(--r); padding: 22px 22px;
+  border: 1px solid var(--border); box-shadow: var(--sh-sm);
+}
+.pub-year   { font-size: 11px; font-weight: 700; color: var(--accent2); letter-spacing: 1px; margin-bottom: 6px; }
+.pub-title  { font-size: 14px; font-weight: 700; color: var(--navy); line-height: 1.4; margin-bottom: 7px; }
+.pub-authors { font-size: 12px; color: var(--muted); margin-bottom: 5px; }
+.pub-venue  { font-size: 11.5px; color: #94a3b8; font-style: italic; margin-bottom: 9px; }
+.pub-tags   { display: flex; gap: 5px; flex-wrap: wrap; }
+.pub-tag    { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; background: #e0f2fe; color: #0369a1; }
+@media (max-width: 680px) { .pub-grid { grid-template-columns: 1fr; } }
+
+/* ===== PROJECTS ===== */
+#projects { background: var(--navy2); padding: 76px 0; color: white; }
+.proj-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+.proj-card {
+  background: rgba(255,255,255,0.038); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--r); padding: 26px; transition: background 0.2s, transform 0.2s;
+}
+.proj-card:hover { background: rgba(56,189,248,0.06); transform: translateY(-3px); }
+.proj-badge { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+.proj-name  { font-size: 16.5px; font-weight: 700; color: white; line-height: 1.3; margin-bottom: 6px; }
+.proj-org   { font-size: 12px; color: #64748b; margin-bottom: 10px; }
+.proj-desc  { font-size: 12.5px; color: #94a3b8; line-height: 1.65; }
+@media (max-width: 820px) { .proj-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 520px) { .proj-grid { grid-template-columns: 1fr; } }
+
+/* ===== TEACHING ===== */
+#teaching { background: var(--off); padding: 76px 0; }
+.teaching-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; }
+.t-col h3 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 18px; }
+.course-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.course-item {
+  display: flex; align-items: flex-start; gap: 9px; font-size: 13.5px;
+  color: var(--text); padding: 9px 13px; background: white;
+  border-radius: 7px; border: 1px solid var(--border); line-height: 1.4;
+}
+.course-item::before { content: '\25B8'; color: var(--accent2); flex-shrink: 0; padding-top: 1px; }
+.inst-list { display: flex; flex-direction: column; gap: 11px; }
+.inst-card {
+  background: white; border-radius: 8px; border: 1px solid var(--border); padding: 14px 16px;
+}
+.inst-years { font-size: 11px; font-weight: 700; color: var(--accent2); letter-spacing: 0.8px; margin-bottom: 3px; }
+.inst-name  { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+.inst-detail { font-size: 12px; color: var(--muted); line-height: 1.5; }
+@media (max-width: 680px) { .teaching-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+/* ===== SERVICE ===== */
+#service { background: var(--mid); padding: 76px 0; }
+.service-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.s-col h3 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 18px; }
+.s-items { display: flex; flex-direction: column; gap: 10px; }
+.s-item { background: white; border-radius: 8px; padding: 14px 16px; border: 1px solid var(--border); }
+.s-item-name { font-size: 13.5px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+.s-item-sub  { font-size: 12px; color: var(--muted); }
+.client-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+.client-pill {
+  font-size: 13px; font-weight: 500; padding: 7px 14px;
+  border-radius: 6px; background: white; border: 1px solid var(--border); color: var(--text);
+}
+@media (max-width: 660px) { .service-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+/* ===== CONTACT ===== */
+#contact { background: var(--navy); padding: 64px 0; color: white; text-align: center; }
+.contact-name     { font-size: 21px; font-weight: 700; margin-bottom: 6px; }
+.contact-location { font-size: 13.5px; color: #475569; margin-bottom: 32px; }
+.contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 40px; }
+.contact-link {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 9px 18px; border-radius: 7px;
+  border: 1px solid rgba(255,255,255,0.10); background: rgba(255,255,255,0.04);
+  color: #94a3b8; font-size: 13px; font-weight: 500; transition: all 0.18s;
+}
+.contact-link:hover { background: rgba(56,189,248,0.09); border-color: rgba(56,189,248,0.28); color: var(--accent); }
+.contact-byline { font-size: 11.5px; color: #1e3a5f; }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav id="topnav">
+  <a href="#hero" class="nav-brand">Renato Rocha Souza</a>
+  <div class="nav-links">
+    <a href="#expertise">Expertise</a>
+    <a href="#career">Career</a>
+    <a href="#education">Education</a>
+    <a href="#research">Research</a>
+    <a href="#projects">Projects</a>
+    <a href="#teaching">Teaching</a>
+    <a href="#service">Affiliations</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="nav-burger" id="burger" aria-label="Open menu">&#9776;</button>
+</nav>
+<div id="navMobile">
+  <a href="#expertise" onclick="closeMobileMenu()">Expertise</a>
+  <a href="#career"    onclick="closeMobileMenu()">Career</a>
+  <a href="#education" onclick="closeMobileMenu()">Education</a>
+  <a href="#research"  onclick="closeMobileMenu()">Research</a>
+  <a href="#projects"  onclick="closeMobileMenu()">Projects</a>
+  <a href="#teaching"  onclick="closeMobileMenu()">Teaching</a>
+  <a href="#service"   onclick="closeMobileMenu()">Affiliations</a>
+  <a href="#contact"   onclick="closeMobileMenu()">Contact</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="fade-up">
+        <div class="hero-eyebrow">Curriculum Vitae &nbsp;·&nbsp; 2026</div>
+        <h1 class="hero-name">Renato Rocha Souza</h1>
+        <div class="hero-role">Director, Advanced Analytics &amp; Head of AI Center of Excellence</div>
+        <div class="hero-org">Raiffeisen Bank International AG &nbsp;&middot;&nbsp; Vienna, Austria</div>
+        <p class="hero-summary">
+          30+ years at the intersection of information science, artificial intelligence, and data &mdash; spanning academia, corporate, and consulting across Brazil, the United States, and Europe. PhD in Information Science followed by three post-doctoral positions at the University of South Wales, Columbia University, and the Austrian Academy of Sciences. Current focus: strategic AI leadership, advanced analytics, and the governance of machine learning systems in global banking.
+        </p>
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-num">30+</div>
+            <div class="hero-stat-label">Years Experience</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">3</div>
+            <div class="hero-stat-label">Continents</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">PhD</div>
+            <div class="hero-stat-label">+ 3 PostDocs</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">25+</div>
+            <div class="hero-stat-label">Certifications</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">186+</div>
+            <div class="hero-stat-label">Publications</div>
+          </div>
+        </div>
+        <div class="hero-links">
+          <a href="mailto:rsouza.fgv@gmail.com" class="hero-link">Email</a>
+          <a href="https://www.linkedin.com/in/renato-rocha-souza-157153/" class="hero-link" target="_blank">LinkedIn</a>
+          <a href="https://twitter.com/rrsouza" class="hero-link" target="_blank">X / Twitter</a>
+          <a href="http://buscatextual.cnpq.br/buscatextual/visualizacv.jsp?id=K4772744U7" class="hero-link" target="_blank">Lattes CV</a>
+          <a href="https://scholar.google.com/citations?user=bbDwLPAAAAAJ" class="hero-link" id="scholar-link-hero" target="_blank">Google Scholar</a>
+          <a href="https://orcid.org/0000-0002-1895-3905" class="hero-link" id="orcid-link-hero" target="_blank">ORCID</a>
+          <a href="https://lab.history.columbia.edu/directory/renato-rocha-souza" class="hero-link" target="_blank">Columbia GPI</a>
+        </div>
+        <div class="hero-langs">
+          <span class="lang-pill primary">Portuguese &mdash; Native</span>
+          <span class="lang-pill">English &mdash; Fluent</span>
+          <span class="lang-pill">Spanish &mdash; Fluent</span>
+          <span class="lang-pill">German &mdash; A2</span>
+        </div>
+      </div>
+      <div class="hero-photo fade-up" style="transition-delay:0.15s">
+        <img src="photo.jpg" alt="Renato Rocha Souza" id="hero-img">
+        <div class="hero-photo-initials" id="hero-initials">RRS</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXPERTISE ===== -->
+<section id="expertise">
+  <div class="container">
+    <div class="fade-up">
+      <div class="sec-label">Areas of Expertise</div>
+      <h2 class="sec-title on-light">Skills &amp; Competencies</h2>
+      <p class="sec-sub">A multidisciplinary practitioner bridging research, engineering, and strategy across information science, AI, and data.</p>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-card fade-up">
+        <div class="exp-card-title">AI &amp; Machine Learning</div>
+        <div class="exp-card-body">From foundational ML to generative AI &mdash; designing, deploying, and governing intelligent systems in production environments.</div>
+        <div class="exp-tags">
+          <span class="exp-tag">Generative AI</span><span class="exp-tag">Deep Learning</span>
+          <span class="exp-tag">MLOps</span><span class="exp-tag">AI Governance</span>
+        </div>
+      </div>
+      <div class="exp-card fade-up" style="transition-delay:.05s">
+        <div class="exp-card-title">Natural Language Processing</div>
+        <div class="exp-card-body">25+ years of NLP research and application: information extraction, text classification, semantic analysis, and large language models.</div>
+        <div class="exp-tags">
+          <span class="exp-tag">Text Mining</span><span class="exp-tag">LLMs</span>
+          <span class="exp-tag">Semantic Search</span><span class="exp-tag">Information Retrieval</span>
+        </div>
+      </div>
+      <div class="exp-card fade-up" style="transition-delay:.10s">
+        <div class="exp-card-title">Knowledge Engineering</div>
+        <div class="exp-card-body">Design and implementation of ontologies, corporate taxonomies, and knowledge organization systems for large institutions.</div>
+        <div class="exp-tags">
+          <span class="exp-tag">Ontologies</span><span class="exp-tag">Taxonomies</span>
+          <span class="exp-tag">Knowledge Management</span>
+        </div>
+      </div>
+      <div class="exp-card fade-up" style="transition-delay:.15s">
+        <div class="exp-card-title">Data Science &amp; Analytics</div>
+        <div class="exp-card-body">End-to-end data science: statistical modeling, machine learning pipelines, advanced analytics, and data-driven decision support.</div>
+        <div class="exp-tags">
+          <span class="exp-tag">Python</span><span class="exp-tag">Statistical Modeling</span>
+          <span class="exp-tag">Data Architecture</span><span class="exp-tag">Visualization</span>
+        </div>
+      </div>
+      <div class="exp-card fade-up" style="transition-delay:.20s">
+        <div class="exp-card-title">Research &amp; Digital Humanities</div>
+        <div class="exp-card-body">Extensive research career spanning information science, digital humanities, political science, law, public health, and education.</div>
+        <div class="exp-tags">
+          <span class="exp-tag">Information Science</span><span class="exp-tag">Digital Humanities</span>
+          <span class="exp-tag">AI &amp; Law</span><span class="exp-tag">Blockchain</span>
+        </div>
+      </div>
+      <div class="exp-card fade-up" style="transition-delay:.25s">
+        <div class="exp-card-title">Technology Leadership</div>
+        <div class="exp-card-body">Building and leading data science teams, AI centers of excellence, and graduate programs; strategic vision for AI transformation.</div>
+        <div class="exp-tags">
+          <span class="exp-tag">Team Building</span><span class="exp-tag">Strategy</span>
+          <span class="exp-tag">AI CoE</span><span class="exp-tag">Program Direction</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CAREER ===== -->
+<section id="career">
+  <div class="container">
+    <div class="fade-up">
+      <div class="sec-label">1992 &ndash; Present</div>
+      <h2 class="sec-title on-light">Career Timeline</h2>
+      <p class="sec-sub">Hover bars for role details &nbsp;&middot;&nbsp; Hover org name for all roles at that organization</p>
+    </div>
+    <div class="fade-up">
+      <div class="gantt-legend">
+        <div class="gl-item"><div class="gl-swatch" style="background:#1565C0"></div>Industry &amp; Corporate</div>
+        <div class="gl-item"><div class="gl-swatch" style="background:#2E7D32"></div>Academia &amp; Research</div>
+        <div class="gl-item"><div class="gl-swatch" style="background:#BF360C"></div>Consulting &amp; Associations</div>
+        <div class="gl-item"><div class="gl-swatch" style="background:#e53935;border-radius:50%"></div>Active &nbsp;&middot;&nbsp; Lighter shade = earlier role</div>
+      </div>
+      <div class="chart-scroll">
+        <svg id="gantt-svg"></svg>
+      </div>
+    </div>
+  </div>
+</section>
+<div id="gantt-tooltip"></div>
+
+<!-- ===== EDUCATION ===== -->
+<section id="education">
+  <div class="container">
+    <div class="fade-up">
+      <div class="sec-label">Academic Background</div>
+      <h2 class="sec-title on-dark">Education</h2>
+      <p class="sec-sub on-dark">Formal education spanning three countries, from electrical engineering to information science and computer science.</p>
+    </div>
+    <div class="edu-timeline fade-up">
+      <div class="edu-entry">
+        <div class="edu-year">1993</div>
+        <div class="edu-deg">Bachelor in Electrical Engineering</div>
+        <div class="edu-inst">Pontifical Catholic University of Rio de Janeiro (PUC-Rio), Brazil</div>
+        <a href="https://www.puc-rio.br" class="edu-link" target="_blank">puc-rio.br &rarr;</a>
+      </div>
+      <div class="edu-entry">
+        <div class="edu-year">1998</div>
+        <div class="edu-deg">Specialist in Technologies and Education</div>
+        <div class="edu-inst">PUC Minas &mdash; Pontifical Catholic University of Minas Gerais, Belo Horizonte, Brazil</div>
+        <a href="https://www.pucminas.br" class="edu-link" target="_blank">pucminas.br &rarr;</a>
+      </div>
+      <div class="edu-entry">
+        <div class="edu-year">2000</div>
+        <div class="edu-deg">MSc in Production Engineering</div>
+        <div class="edu-inst">Federal University of Santa Catarina (UFSC), Florian&oacute;polis, Brazil</div>
+        <div style="font-size:12px;color:var(--muted);margin:3px 0 6px;font-style:italic;">Aprendizagem Colaborativa em Comunidades Virtuais</div>
+        <a href="https://bdtd.ibict.br/vufind/Record/UFSC_cb5a023e739d6a95ac543cbb060e842e" class="edu-link" target="_blank">MSc Dissertation &rarr;</a>
+      </div>
+      <div class="edu-entry">
+        <div class="edu-year">2005</div>
+        <div class="edu-deg">PhD in Information Science</div>
+        <div class="edu-inst">Federal University of Minas Gerais (UFMG), Belo Horizonte, Brazil</div>
+        <div style="font-size:12px;color:var(--muted);margin:3px 0 6px;font-style:italic;">Uma proposta de metodologia para escolha automática de descritores utilizando Sintagmas Nominais</div>
+        <a href="https://bdtd.ibict.br/vufind/Record/UFMG_778feed4f5840bb30613b27ed2b45f9a" class="edu-link" target="_blank">PhD Thesis &rarr;</a>
+        <div class="edu-postdoc-note">+ 3 post-doctoral positions &nbsp;&middot;&nbsp; 2009 &middot; 2015 &middot; 2019</div>
+      </div>
+      <div class="edu-entry">
+        <div class="edu-year">2009</div>
+        <div class="edu-deg">Post Doctorate in Computer Science</div>
+        <div class="edu-inst">University of South Wales, Wales, UK &mdash; Hypermedia Research Unit</div>
+        <a href="https://hypermedia.research.southwales.ac.uk/people/rsouza/" class="edu-link" target="_blank">USW research profile &rarr;</a>
+      </div>
+      <div class="edu-entry">
+        <div class="edu-year">2015</div>
+        <div class="edu-deg">Post-Doctoral Visiting Scholar</div>
+        <div class="edu-inst">Columbia University &mdash; History Lab, New York, USA</div>
+        <a href="https://lab.history.columbia.edu/directory/renato-rocha-souza" class="edu-link" target="_blank">History Lab profile &rarr;</a>
+      </div>
+      <div class="edu-entry">
+        <div class="edu-year">2019 &ndash; 2021</div>
+        <div class="edu-deg">Post-Doctoral Researcher</div>
+        <div class="edu-inst">&#214;AW &mdash; Austrian Centre for Digital Humanities &amp; Cultural Heritage (ACDH-CH), Vienna</div>
+        <a href="https://www.oeaw.ac.at/acdh/" class="edu-link" target="_blank">ACDH-CH &rarr;</a>
+      </div>
+    </div>
+    <div class="certs-block fade-up">
+      <h3>Professional Certifications &amp; Online Courses</h3>
+      <div class="certs-grid">
+        <div class="cert-card"><div class="cert-prov">Coursera &middot; 2023</div><div class="cert-name">Prompt Engineering for ChatGPT</div></div>
+        <div class="cert-card"><div class="cert-prov">AWS Training &middot; 2022</div><div class="cert-name">AWS Cloud Practitioner Essentials</div></div>
+        <div class="cert-card"><div class="cert-prov">Databricks &middot; 2022</div><div class="cert-name">Scaling Machine Learning Pipelines</div></div>
+        <div class="cert-card"><div class="cert-prov">Databricks &middot; 2022</div><div class="cert-name">Scalable Machine Learning with Apache Spark</div></div>
+        <div class="cert-card"><div class="cert-prov">Databricks &middot; 2022</div><div class="cert-name">Fundamentals of the Databricks Lakehouse Platform</div></div>
+        <div class="cert-card"><div class="cert-prov">PoolParty Academy &middot; 2020</div><div class="cert-name">Semantic Web Associate</div></div>
+        <div class="cert-card"><div class="cert-prov">PoolParty Academy &middot; 2020</div><div class="cert-name">Knowledge Engineering</div></div>
+        <div class="cert-card"><div class="cert-prov">PoolParty Academy &middot; 2020</div><div class="cert-name">Semantic Integration</div></div>
+        <div class="cert-card"><div class="cert-prov">Coursera &middot; deeplearning.ai &middot; 2018</div><div class="cert-name">Sequence Models</div></div>
+        <div class="cert-card"><div class="cert-prov">Coursera &middot; deeplearning.ai &middot; 2017</div><div class="cert-name">Neural Networks and Deep Learning</div></div>
+        <div class="cert-card"><div class="cert-prov">Coursera &middot; deeplearning.ai &middot; 2017</div><div class="cert-name">Improving Deep Neural Networks</div></div>
+        <div class="cert-card"><div class="cert-prov">Coursera &middot; deeplearning.ai &middot; 2017</div><div class="cert-name">Structuring Machine Learning Projects</div></div>
+        <div class="cert-card"><div class="cert-prov">Coursera &middot; deeplearning.ai &middot; 2017</div><div class="cert-name">Convolutional Neural Networks</div></div>
+        <div class="cert-card"><div class="cert-prov">Coursera &middot; Univ. of Washington &middot; 2016</div><div class="cert-name">Machine Learning: Classification</div></div>
+        <div class="cert-card"><div class="cert-prov">Coursera &middot; Univ. of Washington &middot; 2016</div><div class="cert-name">Machine Learning: Regression</div></div>
+        <div class="cert-card"><div class="cert-prov">Coursera &middot; Univ. of Washington &middot; 2016</div><div class="cert-name">Machine Learning: Clustering &amp; Retrieval</div></div>
+        <div class="cert-card"><div class="cert-prov">Coursera &middot; Univ. of Washington &middot; 2015</div><div class="cert-name">Machine Learning Foundations: A Case Study Approach</div></div>
+        <div class="cert-card"><div class="cert-prov">Coursera &middot; Stanford University &middot; 2015</div><div class="cert-name">Machine Learning</div></div>
+        <div class="cert-card"><div class="cert-prov">Coursera &middot; Univ. of Michigan &middot; 2015</div><div class="cert-name">Social Network Analysis</div></div>
+        <div class="cert-card"><div class="cert-prov">Coursera &middot; Univ. of Michigan &middot; 2014</div><div class="cert-name">Model Thinking</div></div>
+        <div class="cert-card"><div class="cert-prov">Udacity &middot; 2011</div><div class="cert-name">Introduction to Computer Science</div></div>
+        <div class="cert-card"><div class="cert-prov">ENS Paris &middot; 2011</div><div class="cert-name">Python Advanced Tutorial</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RESEARCH ===== -->
+<section id="research">
+  <div class="container">
+    <div class="fade-up">
+      <div class="sec-label">Publications &amp; Output</div>
+      <h2 class="sec-title on-light">Research &amp; Publications</h2>
+      <p class="sec-sub">Selected publications across AI, NLP, information science, and digital humanities. Full list on Lattes CV and Google Scholar.</p>
+    </div>
+    <p class="research-note fade-up">Selected highlights from 186+ publications indexed on <a href="https://orcid.org/0000-0002-1895-3905" target="_blank" style="color:var(--accent)">ORCID</a> spanning journal articles, conference papers, and book chapters. Full list also on <a href="http://buscatextual.cnpq.br/buscatextual/visualizacv.jsp?id=K4772744U7" target="_blank" style="color:var(--accent)">Lattes CV</a> and <a href="https://scholar.google.com/citations?user=bbDwLPAAAAAJ" target="_blank" style="color:var(--accent)">Google Scholar</a>.</p>
+    <div class="pub-grid fade-up">
+      <div class="pub-card">
+        <div class="pub-year">2025</div>
+        <div class="pub-title">ONTOLOGIES FOR SEMANTIC ANNOTATION: proposal for an Ontological Multimedia Reference Model</div>
+        <div class="pub-authors">Daniela Lucas da Silva, Renato Rocha Souza</div>
+        <div class="pub-venue">Journal Article &mdash; Knowledge Organization</div>
+        <div class="pub-tags"><span class="pub-tag">Ontologies</span><span class="pub-tag">Multimedia</span><span class="pub-tag">Semantic Web</span></div>
+        <a href="https://doi.org/10.5771/0943-7444-2024-8-561" class="edu-link" target="_blank">doi:10.5771/0943-7444-2024-8-561 &rarr;</a>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">2025</div>
+        <div class="pub-title">LARGE LANGUAGE MODELS FOR INFORMATION RETRIEVAL IN DIGITALIZED DOCUMENTS: a study with the GPT-4 model</div>
+        <div class="pub-authors">Daiane Campos Procopio, Renato Rocha Souza, Patricia Nascimento Silva</div>
+        <div class="pub-venue">Journal Article &mdash; Páginas A&B</div>
+        <div class="pub-tags"><span class="pub-tag">LLMs</span><span class="pub-tag">Information Retrieval</span><span class="pub-tag">Generative AI</span></div>
+        <a href="https://doi.org/10.24840/2183-6051_2025" class="edu-link" target="_blank">doi:10.24840/2183-6051_2025 &rarr;</a>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">2024</div>
+        <div class="pub-title">Petro NLP: Resources for natural language processing and information extraction for the oil and gas industry</div>
+        <div class="pub-authors">F. C. Cordeiro et al.</div>
+        <div class="pub-venue">Journal Article &mdash; Computers &amp; Geosciences</div>
+        <div class="pub-tags"><span class="pub-tag">NLP</span><span class="pub-tag">Information Extraction</span><span class="pub-tag">Word Embeddings</span></div>
+        <a href="https://doi.org/10.1016/j.cageo.2024.105714" class="edu-link" target="_blank">doi:10.1016/j.cageo.2024.105714 &rarr;</a>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">2021</div>
+        <div class="pub-title">A Methodology for Semantic Enrichment of Cultural Heritage Images Using Artificial Intelligence Technologies</div>
+        <div class="pub-authors">Yalemisew Abgaz, Renato Rocha Souza et al.</div>
+        <div class="pub-venue">Journal Article &mdash; Journal of Imaging</div>
+        <div class="pub-tags"><span class="pub-tag">AI</span><span class="pub-tag">Computer Vision</span><span class="pub-tag">Digital Humanities</span></div>
+        <a href="https://doi.org/10.3390/jimaging7080121" class="edu-link" target="_blank">doi:10.3390/jimaging7080121 &rarr;</a>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">2020</div>
+        <div class="pub-title">Uncertain Spaces, Uncertain Places: Dealing with Geographic Information in Digital Humanities</div>
+        <div class="pub-authors">Amelie Dorn, Renato Rocha Souza et al.</div>
+        <div class="pub-venue">Journal Article &mdash; GI_Forum Journal</div>
+        <div class="pub-tags"><span class="pub-tag">Digital Humanities</span><span class="pub-tag">GIS</span><span class="pub-tag">NLP</span></div>
+        <a href="https://doi.org/10.1553/giscience2020_01_s32" class="edu-link" target="_blank">doi:10.1553/giscience2020_01_s32 &rarr;</a>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">2019</div>
+        <div class="pub-title">Semantic Web or Web of Data? A diachronic study (1999 to 2017) of the publications of Tim Berners-Lee and the World Wide Web Consortium</div>
+        <div class="pub-authors">L. M. O. Machado, Renato Rocha Souza, M. da Graça Simões</div>
+        <div class="pub-venue">Journal Article &mdash; JASIST</div>
+        <div class="pub-tags"><span class="pub-tag">Semantic Web</span><span class="pub-tag">Bibliometrics</span><span class="pub-tag">Co-word Analysis</span></div>
+        <a href="https://doi.org/10.1002/asi.24152" class="edu-link" target="_blank">doi:10.1002/asi.24152 &rarr;</a>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">2019</div>
+        <div class="pub-title">Towards A Taxonomy of Uncertainties: Analysing Sources of Spatio-Temporal Uncertainty on the Example of Non-Standard German Corpora</div>
+        <div class="pub-authors">Renato Rocha Souza et al.</div>
+        <div class="pub-venue">Journal Article &mdash; Informatics</div>
+        <div class="pub-tags"><span class="pub-tag">Uncertainty</span><span class="pub-tag">Knowledge Organization</span><span class="pub-tag">Linguistics</span></div>
+        <a href="https://doi.org/10.3390/informatics6030034" class="edu-link" target="_blank">doi:10.3390/informatics6030034 &rarr;</a>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">2016</div>
+        <div class="pub-title">Using Artificial Intelligence to Identify State Secrets</div>
+        <div class="pub-authors">Renato Rocha Souza et al.</div>
+        <div class="pub-venue">Journal Article &mdash; Archives Without Borders / Columbia</div>
+        <div class="pub-tags"><span class="pub-tag">AI &amp; Law</span><span class="pub-tag">NLP</span><span class="pub-tag">Classification</span></div>
+        <a href="https://orcid.org/0000-0002-1895-3905" class="edu-link" target="_blank">ORCID record &rarr;</a>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">2015</div>
+        <div class="pub-title">The Consumer Litigation Industry: Chasing Dragon Kings in Lawyer&ndash;Client Networks</div>
+        <div class="pub-authors">Renato Rocha Souza et al.</div>
+        <div class="pub-venue">Social Networks &mdash; Elsevier</div>
+        <div class="pub-tags"><span class="pub-tag">Network Analysis</span><span class="pub-tag">Legal Informatics</span><span class="pub-tag">Data Mining</span></div>
+        <a href="https://doi.org/10.1016/j.socnet.2014.07.001" class="edu-link" target="_blank">doi:10.1016/j.socnet.2014.07.001 &rarr;</a>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">2013</div>
+        <div class="pub-title">PyPLN: A Distributed Platform for Natural Language Processing</div>
+        <div class="pub-authors">F. C. Coelho, R. R. Souza et al.</div>
+        <div class="pub-venue">Journal Article &mdash; FGV EMAp</div>
+        <div class="pub-tags"><span class="pub-tag">NLP</span><span class="pub-tag">Python</span><span class="pub-tag">Distributed Systems</span></div>
+        <a href="https://orcid.org/0000-0002-1895-3905" class="edu-link" target="_blank">ORCID record &rarr;</a>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">2012</div>
+        <div class="pub-title">Towards a Taxonomy of KOS: Dimensions for Classifying Knowledge Organization Systems</div>
+        <div class="pub-authors">Renato Rocha Souza, Douglas Tudhope, Maurício B. Almeida</div>
+        <div class="pub-venue">Knowledge Organization &mdash; Ergon Verlag</div>
+        <div class="pub-tags"><span class="pub-tag">Knowledge Organization</span><span class="pub-tag">Taxonomy</span><span class="pub-tag">KOS</span></div>
+        <a href="https://doi.org/10.5771/0943-7444-2012-3-179" class="edu-link" target="_blank">doi:10.5771/0943-7444-2012-3-179 &rarr;</a>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">2012</div>
+        <div class="pub-title">Information Mining and Visualization of Data from the Brazilian Supreme Court (STF): A Case Study</div>
+        <div class="pub-authors">F. C. Coelho, R. R. Souza, D. Chada</div>
+        <div class="pub-venue">Conference Paper &mdash; Legal Informatics / FGV</div>
+        <div class="pub-tags"><span class="pub-tag">Legal Informatics</span><span class="pub-tag">Visualization</span><span class="pub-tag">NLP</span></div>
+        <a href="https://doi.org/10.5771/9783956504402-320" class="edu-link" target="_blank">doi:10.5771/9783956504402-320 &rarr;</a>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">2010</div>
+        <div class="pub-title">The KOS Spectra: A Tentative Typology of Knowledge Organization Systems</div>
+        <div class="pub-authors">Renato Rocha Souza et al.</div>
+        <div class="pub-venue">Journal Article &amp; Conference Paper &mdash; UFMG / ISKO</div>
+        <div class="pub-tags"><span class="pub-tag">Knowledge Organization</span><span class="pub-tag">Typology</span><span class="pub-tag">ISKO</span></div>
+        <a href="https://orcid.org/0000-0002-1895-3905" class="edu-link" target="_blank">ORCID record &rarr;</a>
+      </div>
+    </div>
+    <div class="fade-up" style="text-align:center;margin-top:28px;">
+      <a href="https://orcid.org/0000-0002-1895-3905" target="_blank" style="display:inline-block;padding:10px 28px;border:1.5px solid var(--accent);color:var(--accent);border-radius:6px;font-size:13.5px;font-weight:600;text-decoration:none;letter-spacing:0.3px;">View all 186+ publications on ORCID &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section id="projects">
+  <div class="container">
+    <div class="fade-up">
+      <div class="sec-label">Selected Initiatives</div>
+      <h2 class="sec-title on-dark">Notable Projects</h2>
+      <p class="sec-sub on-dark">Research initiatives, applied projects, and institutional programmes across career.</p>
+    </div>
+    <div class="proj-grid fade-up">
+      <div class="proj-card">
+        <div class="proj-badge">Columbia University &middot; NSF</div>
+        <div class="proj-name">Archives Without Borders</div>
+        <div class="proj-org">Columbia Global Policy Initiative &mdash; 2015&ndash;2018</div>
+        <div class="proj-desc">AI-driven document declassification and automated identification of state secrets. Co-Director alongside Columbia University faculty. Funded by NSF and the Lenfest Group &mdash; Global Policy Initiative Fund. Pioneered machine learning to accelerate freedom-of-information processes at government scale.</div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-badge">Columbia University &middot; Data Science</div>
+        <div class="proj-name">History Lab</div>
+        <div class="proj-org">Columbia University &mdash; 2015&ndash;2018</div>
+        <div class="proj-desc">Adjunct Senior Research Scholar at the <a href="https://lab.history.columbia.edu/directory/renato-rocha-souza" target="_blank" style="color:var(--accent)">History Lab</a>, applying data science and machine learning to historical records, diplomatic documents, and archival research in collaboration with Columbia historians and political scientists.</div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-badge">Startup &middot; People Analytics</div>
+        <div class="proj-name">APPUS</div>
+        <div class="proj-org">R&amp;D Board Member &mdash; 2016&ndash;2018</div>
+        <div class="proj-desc">Member of the research and development board of APPUS, a startup in the people analytics space. Contributed strategic direction for the application of machine learning and NLP to human resources data in corporate environments.</div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-badge">EU &middot; MSCA &middot; Horizon Europe</div>
+        <div class="proj-name">MSCA Industrial Doctoral Network on Digital Finance</div>
+        <div class="proj-org">Raiffeisen Bank International AG &mdash; 2024&ndash;2027</div>
+        <div class="proj-desc">Industry supervisor and mentor in the EU Horizon Europe MSCA Industrial Doctoral Network on Digital Finance &mdash; a consortium of 13 European universities, financial firms, and research centres jointly training 17 doctoral candidates. Representing RBI in research themes spanning AI-driven financial analysis, explainable AI, and the European Financial Data Space. Profile: <a href="https://www.digital-finance-msca.com/people/renato-rocha-souza" target="_blank" style="color:var(--accent)">digital-finance-msca.com</a></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-badge">&#214;AW &middot; Digital Humanities</div>
+        <div class="proj-name">exploreAT, CHIA &amp; ProvideDH</div>
+        <div class="proj-org">Austrian Academy of Sciences / ACDH-CH &mdash; 2019&ndash;2021</div>
+        <div class="proj-desc">Post-doctoral researcher at ACDH-CH (Austrian Centre for Digital Humanities and Cultural Heritage), working across three EU-funded projects combining NLP, knowledge representation, and digital tools for cultural heritage analysis with Austrian linguistic and historical datasets.
+          <ul style="margin:10px 0 0 18px;padding:0;font-size:13px;line-height:1.8;color:var(--muted)">
+            <li><a href="https://www.oeaw.ac.at/acdh/research/linguistics/research/project-archive/exploreat" target="_blank" style="color:var(--accent)">exploreAT</a> &mdash; Exploring Austria&rsquo;s Cultural Heritage Through the Language Glass</li>
+            <li><a href="https://chia.acdh.oeaw.ac.at/" target="_blank" style="color:var(--accent)">CHIA</a> &mdash; Cultural Heritage Infrastructures &amp; Applications</li>
+            <li><a href="https://providedh.eu/" target="_blank" style="color:var(--accent)">ProvideDH</a> &mdash; Providing Heterogeneous Data for the Digital Humanities</li>
+          </ul>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-badge">&#214;AW &middot; NLP &middot; 2024&ndash;Present</div>
+        <div class="proj-name">Detecting Biases in the Austrian Media Corpus</div>
+        <div class="proj-org">Austrian Academy of Sciences / ACDH-CH &mdash; 2024&ndash;Present</div>
+        <div class="proj-desc">Project coordinator (with Amelie Dorn) using the Austrian Media Corpus (APA-AMC) &mdash; one of the largest German-language text corpora, with ~50 million articles and 12.4 billion tokens spanning decades of Austrian print media &mdash; to detect and analyse linguistic and topical biases embedded in the corpus. Combines NLP, word embeddings, and bias detection methodologies to produce insights into media representation and language change in Austria.</div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-badge">FGV EMAp &middot; FGV IBRE</div>
+        <div class="proj-name">Web-scraped Inflation Index (IPC-W)</div>
+        <div class="proj-org">Principal Investigator &mdash; 2015&ndash;2019</div>
+        <div class="proj-desc">Co-directed research calculating consumer price indexes derived from web-scraped retail prices. Built robust scraping pipelines and statistical modeling scripts (based on Cavallo's Billion Prices Project methodology) to provide daily geospatial inflation indicators for Rio de Janeiro.</div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-badge">FGV EMAp &middot; Open Source</div>
+        <div class="proj-name">PyPLN — Distributed NLP Pipeline</div>
+        <div class="proj-org">Principal Investigator &mdash; 2011&ndash;2016</div>
+        <div class="proj-desc">Led the design and development of PyPLN, a high-performance distributed natural language processing pipeline built in Python, Celery, and MongoDB. Fostered collaboration between computational linguists and mathematicians to analyze large document corpora.</div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-badge">FGV &middot; Legal Informatics</div>
+        <div class="proj-name">The Supreme Court in Numbers</div>
+        <div class="proj-org">Principal Investigator / Researcher &mdash; 2011&ndash;2018</div>
+        <div class="proj-desc">Led data modeling and text mining infrastructure for analyzing millions of judicial decisions from the Brazilian Supreme Court (STF). Extracted semantic patterns in judicial votes, mapped lawyer-client networks, and provided empirical foundations for legal scholars.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TEACHING ===== -->
+<section id="teaching">
+  <div class="container">
+    <div class="fade-up">
+      <div class="sec-label">Academia</div>
+      <h2 class="sec-title on-light">Teaching</h2>
+      <p class="sec-sub">Courses taught at graduate and undergraduate levels across three countries.</p>
+    </div>
+    <div class="teaching-grid fade-up">
+      <div class="t-col">
+        <h3>Courses</h3>
+        <ul class="course-list">
+          <li class="course-item">Generative AI for Humanists</li>
+          <li class="course-item">Data Mining and Modeling</li>
+          <li class="course-item">Natural Language Processing</li>
+          <li class="course-item">Machine Learning &amp; AI</li>
+          <li class="course-item">Information Retrieval Systems</li>
+          <li class="course-item">Knowledge Representation &amp; Ontologies</li>
+          <li class="course-item">Programming Languages (Python)</li>
+          <li class="course-item">Introduction to Computer Science</li>
+          <li class="course-item">Subject Analysis &amp; Indexing Languages</li>
+          <li class="course-item">Technologies in Education &amp; Distance Learning</li>
+          <li class="course-item">Information Organization &amp; Dissemination</li>
+        </ul>
+      </div>
+      <div class="t-col">
+        <h3>Institutions</h3>
+        <div class="inst-list">
+          <div class="inst-card">
+            <div class="inst-years">FEB 2021 &ndash; PRESENT</div>
+            <div class="inst-name">University of Vienna</div>
+            <div class="inst-detail">Lecturer, Master of Digital Humanities. Courses: Generative AI for Humanists &middot; Practical Machine Learning for NLP &middot; Introduction to DH Tools and Methods &middot; Data-Driven Research Methodology for the Digital Humanities.</div>
+          </div>
+          <div class="inst-card">
+            <div class="inst-years">MAY 2010 &ndash; JAN 2025</div>
+            <div class="inst-name">FGV &mdash; Funda&ccedil;&atilde;o Getulio Vargas</div>
+            <div class="inst-detail">EMAp Applied Mathematics School (2010&ndash;2021) &middot; CPDOC Social Sciences (2022&ndash;2025). Head of Masters Programme 2011&ndash;2015.</div>
+          </div>
+          <div class="inst-card">
+            <div class="inst-years">DEC 2003 &ndash; JUN 2010</div>
+            <div class="inst-name">UFMG &mdash; Federal University of Minas Gerais</div>
+            <div class="inst-detail">Full Professor then Associate Professor, Information Science School. Chief of Department of Information Organization.</div>
+          </div>
+          <div class="inst-card">
+            <div class="inst-years">OCT 1996 &ndash; DEC 2003</div>
+            <div class="inst-name">PUC Minas &mdash; Pontifical Catholic University of Minas Gerais</div>
+            <div class="inst-detail">Coordinator &amp; Professor, Pedagogy and Information Science courses. Greater Belo Horizonte.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICE ===== -->
+<section id="service">
+  <div class="container">
+    <div class="fade-up">
+      <div class="sec-label">Engagement</div>
+      <h2 class="sec-title on-light">Affiliations &amp; Recognitions</h2>
+      <p class="sec-sub">Professional associations, boards, awards, editorial service, and selected consulting engagements.</p>
+    </div>
+    <div class="service-grid fade-up">
+      <div class="s-col">
+        <h3>Associations &amp; Boards</h3>
+        <div class="s-items">
+          <div class="s-item">
+            <div class="s-item-name">ISKO &mdash; Int'l Society for Knowledge Organization</div>
+            <div class="s-item-sub">Elected to International Executive Board (2016) &middot; VP, Brazilian Chapter (2015&ndash;2017)</div>
+          </div>
+          <div class="s-item">
+            <div class="s-item-name">SBGC &mdash; Soc. Brasileira de Gest&atilde;o do Conhecimento</div>
+            <div class="s-item-sub">Co-Founder (2000&ndash;2003)</div>
+          </div>
+          <div class="s-item">
+            <div class="s-item-name">Columbia Global Policy Initiative</div>
+            <div class="s-item-sub">Project Director &mdash; Archives Without Borders (2015&ndash;2018)</div>
+          </div>
+          <div class="s-item">
+            <div class="s-item-name">FGV Global Think Tank Summit 2019</div>
+            <div class="s-item-sub">Invited delegate &mdash; 6th Global Think Tank Summit, Rio de Janeiro</div>
+          </div>
+          <div class="s-item">
+            <div class="s-item-name"><a href="https://nexuslinguarum.eu" target="_blank" style="color:inherit;text-decoration:underline dotted">NexusLinguarum &mdash; COST Action CA18209</a></div>
+            <div class="s-item-sub">Working Group 3 Member &mdash; European Network for Web-centred Linguistic Data Science &middot; Austria &middot; 2019&ndash;2024</div>
+          </div>
+          <div class="s-item">
+            <div class="s-item-name"><a href="https://www.digital-finance-msca.com/" target="_blank" style="color:inherit;text-decoration:underline dotted">MSCA Industrial Doctoral Network on Digital Finance</a></div>
+            <div class="s-item-sub">Industry Supervisor / Mentor representing RBI &middot; EU Horizon Europe &middot; 2024&ndash;2027</div>
+          </div>
+        </div>
+      </div>
+      <div class="s-col">
+        <h3>Consulting Clients</h3>
+        <div class="client-wrap">
+          <span class="client-pill">TIM Brasil</span>
+          <span class="client-pill">Light S.A.</span>
+          <span class="client-pill">Unimed</span>
+          <span class="client-pill">PBH &mdash; Prefeitura de BH</span>
+          <span class="client-pill">FGV Projetos</span>
+          <span class="client-pill">Min. Transpar&ecirc;ncia</span>
+          <span class="client-pill">Funda&ccedil;&atilde;o Dom Cabral</span>
+          <span class="client-pill">Documentar</span>
+        </div>
+      </div>
+    </div>
+    <div class="service-grid fade-up" style="margin-top:48px;">
+      <div class="s-col">
+        <h3>Awards &amp; Honours</h3>
+        <div class="s-items">
+          <div class="s-item">
+            <div class="s-item-name">NVIDIA GPU Grant &mdash; Deep Learning Research</div>
+            <div class="s-item-sub">NVIDIA Corporation &middot; 2018</div>
+          </div>
+          <div class="s-item">
+            <div class="s-item-name">CNPq Bolsa de Produtividade em Pesquisa (PQ)</div>
+            <div class="s-item-sub">Brazilian National Research Productivity Fellowship &middot; 2010 &middot; 2016 &middot; 2019</div>
+          </div>
+          <div class="s-item">
+            <div class="s-item-name">Best Paper &mdash; XX ENANCIB 2019 (GT8)</div>
+            <div class="s-item-sub">ANCIB &mdash; Brazilian National Association for Information Science Research</div>
+          </div>
+          <div class="s-item">
+            <div class="s-item-name">Best Paper &mdash; XIV ENANCIB 2013 (GT2)</div>
+            <div class="s-item-sub">ANCIB &mdash; Brazilian National Association for Information Science Research</div>
+          </div>
+          <div class="s-item">
+            <div class="s-item-name">Visiting Professor &mdash; University of Wisconsin-Milwaukee</div>
+            <div class="s-item-sub">USA &middot; 2018</div>
+          </div>
+          <div class="s-item">
+            <div class="s-item-name">Investigador &mdash; Centro de Estudos Interdisciplinares do S&eacute;culo XX</div>
+            <div class="s-item-sub">Universidade de Coimbra, Portugal &middot; 2018</div>
+          </div>
+        </div>
+      </div>
+      <div class="s-col">
+        <h3>Editorial &amp; Review</h3>
+        <div class="s-items">
+          <div class="s-item">
+            <div class="s-item-name">Knowledge Organization &mdash; Editorial Board</div>
+            <div class="s-item-sub">ISKO journal &middot; Current member</div>
+          </div>
+          <div class="s-item">
+            <div class="s-item-name">Journal Reviewer</div>
+            <div class="s-item-sub">Frontiers in Artificial Intelligence &middot; Knowledge Organization &middot; Ci&ecirc;ncia da Informa&ccedil;&atilde;o &middot; LIINC em Revista &middot; Anales de documentaci&oacute;n &middot; Transinforma&ccedil;&atilde;o &middot; Perspectivas em Ci&ecirc;ncia da Informa&ccedil;&atilde;o &middot; Informa&ccedil;&atilde;o &amp; Informa&ccedil;&atilde;o &middot; Educa&ccedil;&atilde;o &amp; Tecnologia &middot; Encontros Bibli</div>
+          </div>
+          <div class="s-item">
+            <div class="s-item-name">Grant Reviewer</div>
+            <div class="s-item-sub">CNPq &middot; CAPES &middot; FAPESP &middot; FCT Portugal &middot; FAPESQ-PE</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<footer id="contact">
+  <div class="container">
+    <div class="contact-name">Renato Rocha Souza</div>
+    <div class="contact-location">Vienna, Austria &nbsp;&middot;&nbsp; Rio de Janeiro, Brazil</div>
+    <div class="contact-links">
+      <a href="mailto:rsouza.fgv@gmail.com" class="contact-link">rsouza.fgv@gmail.com</a>
+      <a href="https://www.linkedin.com/in/renato-rocha-souza-157153/" class="contact-link" target="_blank">LinkedIn</a>
+      <a href="https://twitter.com/rrsouza" class="contact-link" target="_blank">X / @rrsouza</a>
+      <a href="http://buscatextual.cnpq.br/buscatextual/visualizacv.jsp?id=K4772744U7" class="contact-link" target="_blank">Lattes CV</a>
+      <a href="https://lab.history.columbia.edu/directory/renato-rocha-souza" class="contact-link" target="_blank">Columbia GPI</a>
+      <a href="https://scholar.google.com/citations?user=bbDwLPAAAAAJ" class="contact-link" id="scholar-link-footer" target="_blank">Google Scholar</a>
+      <a href="https://orcid.org/0000-0002-1895-3905" class="contact-link" id="orcid-link-footer" target="_blank">ORCID</a>
+    </div>
+    <div class="contact-byline">&copy; 2026 Renato Rocha Souza</div>
+  </div>
+</footer>
+
+<script>
+/* ===== MOBILE NAV ===== */
+document.getElementById('burger').addEventListener('click', () => {
+  document.getElementById('navMobile').classList.toggle('open');
+});
+function closeMobileMenu() { document.getElementById('navMobile').classList.remove('open'); }
+
+/* ===== PHOTO FALLBACK ===== */
+(function() {
+  const img = document.getElementById('hero-img');
+  const init = document.getElementById('hero-initials');
+  function tryPaths(paths, i) {
+    if (i >= paths.length) { img.style.display = 'none'; init.style.display = 'flex'; return; }
+    img.onerror = () => tryPaths(paths, i + 1);
+    img.src = paths[i];
+  }
+  tryPaths(['photo.jpg'], 0);
+})();
+
+/* ===== FADE-IN ON SCROLL ===== */
+const fadeObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); fadeObs.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-up').forEach(el => fadeObs.observe(el));
+
+/* ===== GANTT CHART ===== */
+const NOW = 2026 + 7/12;
+
+const CATS = [
+  {
+    name: "Industry & Corporate",
+    color: "#1565C0",
+    bg: "#EBF3FF",
+    jobs: [
+      { org: "IBM – International Business Machines", title: "Systems Analyst", start: 1992+8/12, end: 1996+8/12,
+        desc: "Implementing solutions for Health, Research & Education. LAN Designer for K-12 Schools. Pioneer on Internet and Concept Maps for Education. Greater Rio de Janeiro." },
+      { org: "Appus | HR Analytics", title: "Director of Research & Development", start: 2016, end: 2018+1/12,
+        desc: "Data Science and Machine Learning R&D. Greater São Paulo Area." },
+      { org: "AI CONSULT", title: "Chief Technology Officer", start: 2019+10/12, end: 2021+10/12,
+        desc: "Data Science and Research. Rio de Janeiro, Brazil." },
+      { org: "RBI – Raiffeisen Bank International AG", title: "Senior Data Scientist · Head of DS Academy", start: 2022, end: 2023+2/12,
+        desc: "Vienna, Austria (Hybrid). Data Science Academy | AI Center of Excellence. Jan 2022 – Mar 2023." },
+      { org: "RBI – Raiffeisen Bank International AG", title: "Expert Data Scientist · DS Chapter Lead", start: 2023+2/12, end: 2025+5/12,
+        desc: "Vienna, Austria (Hybrid). Data Science Chapter Lead. Mar 2023 – Jun 2025." },
+      { org: "RBI – Raiffeisen Bank International AG", title: "Director, Advanced Analytics | Head of AI CoE", start: 2025+5/12, end: NOW,
+        desc: "Vienna, Austria. Director, Advanced Analytics & Head of AI Center of Excellence. Jun 2025 – Present." }
+    ]
+  },
+  {
+    name: "Academia & Research",
+    color: "#2E7D32",
+    bg: "#EAF5EB",
+    jobs: [
+      { org: "PUC Minas – Pontifical Catholic University of Minas Gerais", title: "Coordinator & Professor", start: 1996+9/12, end: 2003+11/12,
+        desc: "Greater Belo Horizonte. Professor at Pedagogy and Information Science courses. Oct 1996 – Dec 2003." },
+      { org: "UFMG – Federal University of Minas Gerais", title: "Associate Professor & Researcher", start: 2004, end: 2010+5/12,
+        desc: "Greater Belo Horizonte. Full-time Associate Professor and Researcher. Jan 2004 – Jun 2010." },
+      { org: "University of South Wales", title: "Visiting Fellow", start: 2009, end: 2019,
+        desc: "Pontypridd, Wales. Hypermedia Research Unit. STAR project (Semantic Technologies for Archaeological Resources). Jan 2009 – Jan 2019." },
+      { org: "FGV – Fundação Getulio Vargas", title: "Researcher · Professor · Principal Investigator", start: 2010+4/12, end: 2025,
+        desc: "Rio de Janeiro. EMAp (2010–2021) and CPDOC (2022–2025). Head of Masters Program, PI in R&D Projects. May 2010 – Jan 2025." },
+      { org: "UFMG – Federal University of Minas Gerais", title: "Voluntary Associate Professor & Researcher", start: 2010+5/12, end: NOW,
+        desc: "Greater Belo Horizonte. Research Collaborator at Information Science School (PPGGOC). Jun 2010 – Present." },
+      { org: "Columbia University", title: "Adjunct Senior Research Scholar", start: 2015+8/12, end: 2018+8/12,
+        desc: "New York City. History Lab (lab.history.columbia.edu). Data Science, Machine Learning. Sep 2015 – Sep 2018." },
+      { org: "Universidade de Coimbra", title: "Researcher — Centro de Estudos Interdisciplinares", start: 2018, end: 2025,
+        desc: "Coimbra, Portugal. Jan 2018 – Jan 2025." },
+      { org: "ÖAW – Austrian Academy of Sciences", title: "Post-Doctoral Researcher — ACDH-CH", start: 2019, end: 2021+11/12,
+        desc: "Vienna, Austria. Post-Doctoral Researcher, Austrian Centre for Digital Humanities & Cultural Heritage. Projects: exploreAT, CHIA, ProvideDH. Jan 2019 – Dec 2021." },
+      { org: "Danube University Krems", title: "Researcher", start: 2020+6/12, end: 2021+10/12,
+        desc: "Krems, Lower Austria. Project member — Infrastructures for Digital Arts Teaching and Research in Higher Education (ADA archive expansion). Data Science, Machine Learning. Jul 2020 – Nov 2021." },
+      { org: "University of Vienna", title: "Lecturer — Data Science, ML & AI", start: 2021+1/12, end: NOW,
+        desc: "Vienna, Austria. Institut für Europäische und Vergleichende Sprach- und Literaturwissenschaft. Feb 2021 – Present." },
+      { org: "ÖAW – Austrian Academy of Sciences", title: "Guest Researcher", start: 2024+1/12, end: 2025+2/12,
+        desc: "Vienna, Austria. Scholarly Research, Generative AI. Feb 2024 – Mar 2025." },
+      { org: "ÖAW – Austrian Academy of Sciences", title: "Senior Researcher", start: 2025+2/12, end: NOW,
+        desc: "Vienna, Austria. Scholarly Research, Generative AI. Part-time. Mar 2025 – Present." }
+    ]
+  },
+  {
+    name: "Consulting & Associations",
+    color: "#BF360C",
+    bg: "#FDF0EC",
+    jobs: [
+      { org: "SBGC – Soc. Brasileira de Gestão do Conhecimento", title: "Co-Founder", start: 2000, end: 2003,
+        desc: "Brazil. Conceptualization and Planning of the Brazilian Association for Knowledge Management." },
+      { org: "Documentar", title: "Technical Consultant", start: 2005, end: 2008,
+        desc: "Greater Belo Horizonte. Taxonomy and Ontology Engineering, Information Organization." },
+      { org: "Fundação Dom Cabral", title: "Training Specialist & Consultant", start: 2007, end: 2014,
+        desc: "Greater Belo Horizonte. Higher Education, Knowledge Management." },
+      { org: "LEXIMATH – Information Modeling", title: "Co-Founder", start: 2010+11/12, end: 2015+11/12,
+        desc: "Greater Rio de Janeiro. Information Modeling and Management." },
+      { org: "ISKO Brazil", title: "VP — Brazilian Chapter", start: 2015+8/12, end: 2017+8/12,
+        desc: "International Society for Knowledge Organization. Planning of Seminars, Scientific Committee." }
+    ]
+  }
+];
+
+function groupByOrg(jobs) {
+  const m = new Map();
+  jobs.forEach(j => { if (!m.has(j.org)) m.set(j.org, []); m.get(j.org).push(j); });
+  return [...m.entries()].map(([org, roles]) => ({ org, roles }));
+}
+const ORG_LABELS = {
+  'FGV – Fundação Getulio Vargas': 'Getulio Vargas Foundation',
+  'UFMG – Federal University of Minas Gerais': 'Fed. University of Minas Gerais',
+  'IBM – International Business Machines': 'Intl. Business Machines',
+  'RBI – Raiffeisen Bank International AG': 'Raiffeisen Bank Intl.',
+  'ÖAW – Austrian Academy of Sciences': 'Austrian Academy of Sciences',
+  'PUC Minas – Pontifical Catholic University of Minas Gerais': 'Pontifical Catholic Univ. MG',
+};
+function shortLabel(org) {
+  if (ORG_LABELS[org]) return ORG_LABELS[org];
+  const i = org.indexOf(' –'); if (i > 0) return org.slice(0, i);
+  const j = org.indexOf(' (');  if (j > 0) return org.slice(0, j);
+  return org;
+}
+function tintColor(hex, f) {
+  const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+  return '#' + [r,g,b].map(c => Math.round(c+(255-c)*f).toString(16).padStart(2,'0')).join('');
+}
+function roleShades(base, n) {
+  if (n <= 1) return [base];
+  return Array.from({length:n}, (_,i) => tintColor(base, 0.52*(n-1-i)/(n-1)));
+}
+
+const SY=1992, EY=2027, PX=22, ML=12, LW=210, MR=14, MT=52, MB=28;
+const RH=24, RG=5, CH=20, CGA=7, CGB=14;
+const TW=(EY-SY)*PX, SW=ML+LW+TW+MR;
+const NS='http://www.w3.org/2000/svg';
+function mk(tag,attrs,par) {
+  const e=document.createElementNS(NS,tag);
+  for(const[k,v] of Object.entries(attrs)) e.setAttribute(k,v);
+  if(par) par.appendChild(e);
+  return e;
+}
+function xt(y) { return ML+LW+(y-SY)*PX; }
+
+let svgH = MT;
+CATS.forEach((c,ci) => { if(ci>0) svgH+=CGB; svgH+=CH+CGA; svgH+=groupByOrg(c.jobs).length*(RH+RG); });
+svgH += MB;
+
+const gsvg = document.getElementById('gantt-svg');
+gsvg.setAttribute('width', SW); gsvg.setAttribute('height', svgH);
+
+mk('rect', {x:ML+LW,y:0,width:TW+MR,height:svgH,fill:'#fafbfc'}, gsvg);
+
+for (let y=SY; y<=EY; y++) {
+  if(y%2!==0) continue;
+  const x=xt(y), dec=(y%10===0);
+  mk('line',{x1:x,y1:MT-8,x2:x,y2:svgH-MB,stroke:dec?'#c8c8c8':'#e6e6e6','stroke-width':dec?1.5:1},gsvg);
+  const t=mk('text',{x,y:MT-12,'text-anchor':'middle','font-size':dec?11:10,'font-weight':dec?700:400,fill:dec?'#555':'#aaa','font-family':'inherit'},gsvg);
+  t.textContent=y;
+}
+const nx=xt(NOW);
+mk('line',{x1:nx,y1:MT-8,x2:nx,y2:svgH-MB,stroke:'#e53935','stroke-width':1.5,'stroke-dasharray':'5,3'},gsvg);
+const nt=mk('text',{x:nx-3,y:MT-12,'text-anchor':'end','font-size':10,'font-weight':700,fill:'#e53935','font-family':'inherit'},gsvg);
+nt.textContent='now ▶';
+
+const gtip = document.getElementById('gantt-tooltip');
+const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function fmt(v) { const yr=Math.floor(v); return MONTHS[Math.min(Math.round((v-yr)*12),11)]+' '+yr; }
+function showRole(e,r) {
+  const end=r.end>=NOW-0.01?'Present':fmt(r.end);
+  gtip.innerHTML=`<div class="tt-title">${r.title}</div><div class="tt-org">${r.org}</div><div class="tt-dates">${fmt(r.start)} – ${end}</div><div class="tt-desc">${r.desc}</div>`;
+  gtip.style.display='block'; posTip(e);
+}
+function showOrg(e,org,roles,shades) {
+  const rows=roles.map((r,i)=>`<div class="tt-role-row"><div class="tt-role-dot" style="background:${shades[i]}"></div><div><strong style="color:#eee">${r.title}</strong><br><span style="color:#aaa;font-size:10.5px">${fmt(r.start)} – ${r.end>=NOW-0.01?'Present':fmt(r.end)}</span></div></div>`).join('');
+  gtip.innerHTML=`<div class="tt-org" style="font-size:13px;font-weight:700;color:white;margin-bottom:8px">${org}</div><div class="tt-roles">${rows}</div>`;
+  gtip.style.display='block'; posTip(e);
+}
+function posTip(e) {
+  gtip.style.left=Math.min(e.clientX+16,window.innerWidth-330)+'px';
+  gtip.style.top=Math.max(e.clientY-50,8)+'px';
+}
+function hideTip() { gtip.style.display='none'; }
+
+let cy=MT;
+CATS.forEach((cat,ci) => {
+  if(ci>0) cy+=CGB;
+  mk('rect',{x:ML,y:cy,width:LW+TW+MR,height:CH,fill:cat.bg,rx:4},gsvg);
+  const ct=mk('text',{x:ML+8,y:cy+14,'font-size':10.5,'font-weight':700,fill:cat.color,'letter-spacing':0.5,'font-family':'inherit'},gsvg);
+  ct.textContent=cat.name.toUpperCase();
+  cy+=CH+CGA;
+
+  groupByOrg(cat.jobs).forEach(({org,roles}) => {
+    const shades=roleShades(cat.color,roles.length);
+    const cur=roles.some(r=>r.end>=NOW-0.01);
+    const row=mk('rect',{x:ML,y:cy,width:LW+TW+MR,height:RH,fill:'transparent',cursor:'default'},gsvg);
+    mk('line',{x1:ML+LW,y1:cy+RH,x2:ML+LW+TW+MR,y2:cy+RH,stroke:'#efefef','stroke-width':0.5},gsvg);
+    const lbl=mk('text',{x:ML+LW-8,y:cy+RH/2+4,'text-anchor':'end','font-size':11,'font-weight':cur?600:400,fill:cur?'#1a1a1a':'#555','font-family':'inherit',cursor:'pointer'},gsvg);
+    lbl.textContent=shortLabel(org);
+
+    roles.forEach((role,ri) => {
+      const color=shades[ri], isCur=role.end>=NOW-0.01;
+      const bx=xt(role.start), bw=Math.max((role.end-role.start)*PX,5);
+      const bar=mk('rect',{x:bx,y:cy+4,width:bw,height:RH-8,fill:color,rx:3,cursor:'pointer'},gsvg);
+      if(isCur) {
+        const dot=mk('circle',{cx:bx+bw+5,cy:cy+RH/2,r:3,fill:'#e53935'},gsvg);
+        const anim=document.createElementNS(NS,'animate');
+        anim.setAttribute('attributeName','opacity');
+        anim.setAttribute('values','1;0.25;1');
+        anim.setAttribute('dur','2s');
+        anim.setAttribute('repeatCount','indefinite');
+        dot.appendChild(anim);
+      }
+      const hl=()=>row.setAttribute('fill','#f4f6fa');
+      const un=()=>{row.setAttribute('fill','transparent');hideTip();};
+      bar.addEventListener('mouseenter',e=>{hl();showRole(e,role);});
+      bar.addEventListener('mousemove',posTip);
+      bar.addEventListener('mouseleave',un);
+    });
+
+    lbl.addEventListener('mouseenter',e=>{row.setAttribute('fill','#f4f6fa');showOrg(e,org,roles,shades);});
+    lbl.addEventListener('mousemove',posTip);
+    lbl.addEventListener('mouseleave',()=>{row.setAttribute('fill','transparent');hideTip();});
+    cy+=RH+RG;
+  });
+});
+</script>
+</body>
+</html>

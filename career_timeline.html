@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career Timeline — Renato Rocha Souza</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #f0f2f5 0%, #e8edf2 100%);
+  min-height: 100vh;
+  padding: 36px 20px 40px;
+}
+.header { text-align: center; margin-bottom: 24px; }
+.header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a2e;
+  letter-spacing: -0.5px;
+  margin-bottom: 5px;
+}
+.header p { color: #777; font-size: 14px; }
+.legend {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: #555;
+  font-weight: 500;
+}
+.legend-swatch { width: 14px; height: 14px; border-radius: 3px; }
+#chart-wrap {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 28px rgba(0,0,0,0.09);
+  padding: 20px 12px 20px 0;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+#tooltip {
+  position: fixed;
+  background: rgba(13, 13, 28, 0.95);
+  color: #f0f0f0;
+  padding: 12px 15px;
+  border-radius: 10px;
+  font-size: 12.5px;
+  pointer-events: none;
+  max-width: 310px;
+  z-index: 9999;
+  display: none;
+  line-height: 1.6;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.tt-title { font-weight: 700; font-size: 13px; color: white; margin-bottom: 2px; }
+.tt-org   { color: #90b8f8; font-size: 12px; margin-bottom: 2px; }
+.tt-dates { color: #aaa; font-size: 11px; margin-bottom: 7px; font-style: italic; }
+.tt-desc  { color: #ccc; font-size: 11px; line-height: 1.55; }
+.tt-roles { margin-top: 6px; }
+.tt-role-row { font-size: 11px; color: #ddd; display: flex; gap: 6px; align-items: baseline; margin-bottom: 2px; }
+.tt-role-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; margin-top: 2px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Career Timeline</h1>
+  <p>Renato Rocha Souza &nbsp;·&nbsp; 1992 – Present &nbsp;·&nbsp; Hover bars for role details · Hover org name for all roles</p>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-swatch" style="background:#1565C0"></div>Industry & Corporate</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:#2E7D32"></div>Academia & Research</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:#BF360C"></div>Consulting & Associations</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:#e53935; border-radius:50%"></div>Active role &nbsp;·&nbsp; Lighter shade = earlier role</div>
+</div>
+
+<div id="chart-wrap">
+  <svg id="svg"></svg>
+</div>
+<div id="tooltip"></div>
+
+<script>
+const NOW = 2026 + 7/12;
+
+const CATS = [
+  {
+    name: "Industry & Corporate",
+    color: "#1565C0",
+    bg: "#EBF3FF",
+    jobs: [
+      { org: "IBM – International Business Machines", title: "Systems Analyst", start: 1992+8/12, end: 1996+8/12,
+        desc: "Implementing solutions for Health, Research & Education. LAN Designer for K-12 Schools. Pioneer on Internet and Concept Maps for Education. Greater Rio de Janeiro." },
+      { org: "Appus | HR Analytics", title: "Director of Research & Development", start: 2016, end: 2018+1/12,
+        desc: "Data Science and Machine Learning R&D. Greater São Paulo Area." },
+      { org: "AI CONSULT", title: "Chief Technology Officer", start: 2019+10/12, end: 2021+10/12,
+        desc: "Data Science and Research. Rio de Janeiro, Brazil." },
+      { org: "RBI – Raiffeisen Bank International AG", title: "Senior Data Scientist · Head of DS Academy", start: 2022, end: 2023+2/12,
+        desc: "Vienna, Austria (Hybrid). Data Science Academy | AI Center of Excellence. Jan 2022 – Mar 2023." },
+      { org: "RBI – Raiffeisen Bank International AG", title: "Expert Data Scientist · DS Chapter Lead", start: 2023+2/12, end: 2025+5/12,
+        desc: "Vienna, Austria (Hybrid). Data Science Chapter Lead. Skills: Data Science, Learning Strategies, and 16 more. Mar 2023 – Jun 2025." },
+      { org: "RBI – Raiffeisen Bank International AG", title: "Head of Group Advanced Analytics | AI CoE", start: 2025+5/12, end: NOW,
+        desc: "Vienna, Austria. Currently leading Group Advanced Analytics within the AI Center of Excellence. Jun 2025 – Present." },
+    ]
+  },
+  {
+    name: "Academia & Research",
+    color: "#2E7D32",
+    bg: "#EAF5EB",
+    jobs: [
+      { org: "PUC Minas – Pontifical Catholic University of Minas Gerais", title: "Coordinator & Professor", start: 1996+9/12, end: 2003+11/12,
+        desc: "Greater Belo Horizonte. Professor at Pedagogy and Information Science courses. Information Retrieval, Information Science. Oct 1996 – Dec 2003." },
+      { org: "UFMG – Federal University of Minas Gerais", title: "Associate Professor & Researcher", start: 2004, end: 2010+5/12,
+        desc: "Greater Belo Horizonte. Full-time Associate Professor and Researcher. Jan 2004 – Jun 2010." },
+      { org: "University of South Wales", title: "Visiting Fellow", start: 2009, end: 2019,
+        desc: "Pontypridd, Wales. Hypermedia Research Unit. Visiting Fellow by the University High Research Committee. STAR project (Semantic Technologies for Archaeological Resources). Jan 2009 – Jan 2019." },
+      { org: "FGV – Fundação Getulio Vargas", title: "Researcher · Professor · Principal Investigator", start: 2010+4/12, end: 2025,
+        desc: "Rio de Janeiro. 2010–2021: EMAp Applied Mathematics School. 2022–2025: CPDOC (Social Sciences & International Relations). Head of Masters Program, PI in R&D Projects. May 2010 – Jan 2025." },
+      { org: "UFMG – Federal University of Minas Gerais", title: "Voluntary Associate Professor & Researcher", start: 2010+5/12, end: NOW,
+        desc: "Greater Belo Horizonte. Research Collaborator at Information Science School (PPGGOC). Data Science, University Teaching. Jun 2010 – Present." },
+      { org: "Columbia University", title: "Adjunct Senior Research Scholar", start: 2015+8/12, end: 2018+8/12,
+        desc: "New York City Metropolitan Area. Part-time. History Lab (history-lab.org). Data Science, Machine Learning. Sep 2015 – Sep 2018." },
+      { org: "Universidade de Coimbra", title: "Researcher — Centro de Estudos Interdisciplinares", start: 2018, end: 2025,
+        desc: "Coimbra Metropolitan Area. University Teaching and Research. Jan 2018 – Jan 2025." },
+      { org: "ÖAW – Austrian Academy of Sciences", title: "Scientific Researcher — ACDH-CH", start: 2019, end: 2021+11/12,
+        desc: "Vienna, Austria. On-site. Austrian Centre for Digital Humanities & Cultural Heritage. Projects: exploreAT, CHIA. Jan 2019 – Dec 2021." },
+      { org: "Danube University Krems", title: "Researcher", start: 2020+6/12, end: 2021+10/12,
+        desc: "Krems, Lower Austria. Department für Bildwissenschaften. Data Science, Machine Learning. Jul 2020 – Nov 2021." },
+      { org: "University of Vienna", title: "Lecturer — Data Science, ML & AI", start: 2021+1/12, end: NOW,
+        desc: "Vienna, Austria. Part-time, on-site. Institut für Europäische und Vergleichende Sprach- und Literaturwissenschaft. Feb 2021 – Present." },
+      { org: "ÖAW – Austrian Academy of Sciences", title: "Guest Researcher", start: 2024+1/12, end: 2025+2/12,
+        desc: "Vienna, Austria (Hybrid). Scholarly Research, Generative AI. Feb 2024 – Mar 2025." },
+      { org: "ÖAW – Austrian Academy of Sciences", title: "Senior Researcher", start: 2025+2/12, end: NOW,
+        desc: "Vienna, Austria (Hybrid). Scholarly Research, Generative AI. Part-time. Mar 2025 – Present." },
+    ]
+  },
+  {
+    name: "Consulting & Associations",
+    color: "#BF360C",
+    bg: "#FDF0EC",
+    jobs: [
+      { org: "SBGC – Soc. Brasileira de Gestão do Conhecimento", title: "Co-Founder", start: 2000, end: 2003,
+        desc: "Brazil. Conceptualization and Planning of the Brazilian Association for Knowledge Management. Jan 2000 – Jan 2003." },
+      { org: "Documentar", title: "Technical Consultant", start: 2005, end: 2008,
+        desc: "Greater Belo Horizonte. Contract. Taxonomy and Ontology Engineering, Information Organization. 2005–2008." },
+      { org: "Fundação Dom Cabral", title: "Training Specialist & Consultant", start: 2007, end: 2014,
+        desc: "Greater Belo Horizonte. Consultant and Collaborator. Higher Education, Knowledge Management. Jan 2007 – Jan 2014." },
+      { org: "LEXIMATH – Information Modeling", title: "Co-Founder", start: 2010+11/12, end: 2015+11/12,
+        desc: "Greater Rio de Janeiro. Information Modeling and Management. Project Management, Research. Dec 2010 – Dec 2015." },
+      { org: "ISKO Brazil", title: "VP — Brazilian Chapter", start: 2015+8/12, end: 2017+8/12,
+        desc: "International Society for Knowledge Organization. Planning and Organization of Seminars, Scientific Committee. Sep 2015 – Sep 2017." },
+    ]
+  }
+];
+
+// ----- helpers -----
+
+function groupByOrg(jobs) {
+  const map = new Map();
+  jobs.forEach(job => {
+    if (!map.has(job.org)) map.set(job.org, []);
+    map.get(job.org).push(job);
+  });
+  return [...map.entries()].map(([org, roles]) => ({ org, roles }));
+}
+
+const ORG_LABELS = {
+  'FGV – Fundação Getulio Vargas': 'Getulio Vargas Foundation',
+  'UFMG – Federal University of Minas Gerais': 'Fed. University of Minas Gerais',
+  'IBM – International Business Machines': 'Intl. Business Machines',
+  'RBI – Raiffeisen Bank International AG': 'Raiffeisen Bank Intl.',
+  'ÖAW – Austrian Academy of Sciences': 'Austrian Academy of Sciences',
+  'PUC Minas – Pontifical Catholic University of Minas Gerais': 'Pontifical Catholic Univ. MG',
+};
+function shortLabel(org) {
+  if (ORG_LABELS[org]) return ORG_LABELS[org];
+  const i = org.indexOf(' –');
+  if (i > 0) return org.slice(0, i);
+  const j = org.indexOf(' (');
+  if (j > 0) return org.slice(0, j);
+  return org;
+}
+
+function tintColor(hex, factor) {
+  // factor 0 = original color, 1 = white
+  const r = parseInt(hex.slice(1,3), 16);
+  const g = parseInt(hex.slice(3,5), 16);
+  const b = parseInt(hex.slice(5,7), 16);
+  return '#' + [r,g,b]
+    .map(c => Math.round(c + (255-c) * factor).toString(16).padStart(2,'0'))
+    .join('');
+}
+
+function roleShades(baseColor, n) {
+  // Earliest role gets lightest tint; most recent gets full color.
+  if (n <= 1) return [baseColor];
+  return Array.from({length: n}, (_, i) => {
+    const factor = 0.52 * (n - 1 - i) / (n - 1);
+    return tintColor(baseColor, factor);
+  });
+}
+
+// ----- layout constants -----
+const SY = 1992, EY = 2027, PX = 22;
+const ML = 12, LW = 210, MR = 14, MT = 52, MB = 28;
+const RH = 24, RG = 5;
+const CH = 20, CGA = 7, CGB = 14;
+const TW = (EY - SY) * PX;
+const SW = ML + LW + TW + MR;
+
+// Pre-compute total height
+let svgH = MT;
+CATS.forEach((cat, ci) => {
+  if (ci > 0) svgH += CGB;
+  svgH += CH + CGA;
+  svgH += groupByOrg(cat.jobs).length * (RH + RG);
+});
+svgH += MB;
+
+const svg = document.getElementById('svg');
+svg.setAttribute('width', SW);
+svg.setAttribute('height', svgH);
+
+const NS = 'http://www.w3.org/2000/svg';
+function mk(tag, attrs, parent) {
+  const e = document.createElementNS(NS, tag);
+  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function xt(year) { return ML + LW + (year - SY) * PX; }
+
+// ----- static chrome -----
+
+mk('rect', { x: ML+LW, y: 0, width: TW+MR, height: svgH, fill: '#fafbfc' }, svg);
+
+for (let y = SY; y <= EY; y++) {
+  if (y % 2 !== 0) continue;
+  const x = xt(y);
+  const decade = y % 10 === 0;
+  mk('line', { x1:x, y1:MT-8, x2:x, y2:svgH-MB,
+    stroke: decade ? '#c8c8c8' : '#e6e6e6',
+    'stroke-width': decade ? 1.5 : 1 }, svg);
+  const t = mk('text', { x, y:MT-12, 'text-anchor':'middle',
+    'font-size': decade?11:10, 'font-weight': decade?700:400,
+    fill: decade?'#555':'#aaa', 'font-family':'inherit' }, svg);
+  t.textContent = y;
+}
+
+const nx = xt(NOW);
+mk('line', { x1:nx, y1:MT-8, x2:nx, y2:svgH-MB,
+  stroke:'#e53935', 'stroke-width':1.5, 'stroke-dasharray':'5,3' }, svg);
+const nt = mk('text', { x:nx-3, y:MT-12, 'text-anchor':'end',
+  'font-size':10, 'font-weight':700, fill:'#e53935', 'font-family':'inherit' }, svg);
+nt.textContent = 'now ▶';
+
+// ----- tooltip -----
+const tip = document.getElementById('tooltip');
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function fmt(v) {
+  const yr = Math.floor(v);
+  return `${MONTHS[Math.min(Math.round((v-yr)*12),11)]} ${yr}`;
+}
+function showRoleTip(e, role) {
+  const endStr = role.end >= NOW-0.01 ? 'Present' : fmt(role.end);
+  tip.innerHTML =
+    `<div class="tt-title">${role.title}</div>` +
+    `<div class="tt-org">${role.org}</div>` +
+    `<div class="tt-dates">${fmt(role.start)} – ${endStr}</div>` +
+    `<div class="tt-desc">${role.desc}</div>`;
+  tip.style.display = 'block';
+  posTip(e);
+}
+function showOrgTip(e, org, roles, shades) {
+  const endStr = r => r.end >= NOW-0.01 ? 'Present' : fmt(r.end);
+  const rows = roles.map((r, i) =>
+    `<div class="tt-role-row">` +
+    `<div class="tt-role-dot" style="background:${shades[i]}"></div>` +
+    `<div><strong style="color:#eee">${r.title}</strong><br>` +
+    `<span style="color:#aaa;font-size:10.5px">${fmt(r.start)} – ${endStr(r)}</span></div>` +
+    `</div>`
+  ).join('');
+  tip.innerHTML =
+    `<div class="tt-org" style="font-size:13px;font-weight:700;color:white;margin-bottom:8px">${org}</div>` +
+    `<div class="tt-roles">${rows}</div>`;
+  tip.style.display = 'block';
+  posTip(e);
+}
+function posTip(e) {
+  tip.style.left = Math.min(e.clientX+16, window.innerWidth-330) + 'px';
+  tip.style.top  = Math.max(e.clientY-50, 8) + 'px';
+}
+function hideTip() { tip.style.display = 'none'; }
+
+// ----- render -----
+let cy = MT;
+
+CATS.forEach((cat, ci) => {
+  if (ci > 0) cy += CGB;
+
+  // Category header
+  mk('rect', { x:ML, y:cy, width:LW+TW+MR, height:CH, fill:cat.bg, rx:4 }, svg);
+  const ctxt = mk('text', { x:ML+8, y:cy+14,
+    'font-size':10.5, 'font-weight':700, fill:cat.color,
+    'letter-spacing':0.5, 'font-family':'inherit' }, svg);
+  ctxt.textContent = cat.name.toUpperCase();
+  cy += CH + CGA;
+
+  const groups = groupByOrg(cat.jobs);
+
+  groups.forEach(({ org, roles }) => {
+    const shades = roleShades(cat.color, roles.length);
+    const anyCur = roles.some(r => r.end >= NOW-0.01);
+
+    // Row highlight target
+    const row = mk('rect', { x:ML, y:cy, width:LW+TW+MR, height:RH,
+      fill:'transparent', cursor:'default' }, svg);
+
+    // Thin separator
+    mk('line', { x1:ML+LW, y1:cy+RH, x2:ML+LW+TW+MR, y2:cy+RH,
+      stroke:'#efefef', 'stroke-width':0.5 }, svg);
+
+    // Org label — shown once
+    const orgShort = shortLabel(org);
+    const lbl = mk('text', {
+      x:ML+LW-8, y:cy+RH/2+4,
+      'text-anchor':'end', 'font-size':11,
+      'font-weight': anyCur ? 600 : 400,
+      fill: anyCur ? '#1a1a1a' : '#555',
+      'font-family':'inherit', cursor:'pointer'
+    }, svg);
+    lbl.textContent = orgShort;
+
+    // Per-role bars
+    roles.forEach((role, ri) => {
+      const color = shades[ri];
+      const cur   = role.end >= NOW-0.01;
+      const bx    = xt(role.start);
+      const bw    = Math.max((role.end - role.start) * PX, 5);
+
+      const bar = mk('rect', {
+        x:bx, y:cy+4, width:bw, height:RH-8,
+        fill:color, rx:3, cursor:'pointer'
+      }, svg);
+
+      // Pulsing dot for active role
+      if (cur) {
+        const dot = mk('circle', { cx:bx+bw+5, cy:cy+RH/2, r:3, fill:'#e53935' }, svg);
+        const anim = document.createElementNS(NS, 'animate');
+        anim.setAttribute('attributeName','opacity');
+        anim.setAttribute('values','1;0.25;1');
+        anim.setAttribute('dur','2s');
+        anim.setAttribute('repeatCount','indefinite');
+        dot.appendChild(anim);
+      }
+
+      const hlRow  = () => row.setAttribute('fill','#f4f6fa');
+      const unhlRow = () => { row.setAttribute('fill','transparent'); hideTip(); };
+
+      bar.addEventListener('mouseenter', e => { hlRow(); showRoleTip(e, role); });
+      bar.addEventListener('mousemove',  posTip);
+      bar.addEventListener('mouseleave', unhlRow);
+    });
+
+    // Label hover → summary of all roles at this org
+    lbl.addEventListener('mouseenter', e => {
+      row.setAttribute('fill','#f4f6fa');
+      showOrgTip(e, org, roles, shades);
+    });
+    lbl.addEventListener('mousemove',  posTip);
+    lbl.addEventListener('mouseleave', () => { row.setAttribute('fill','transparent'); hideTip(); });
+
+    cy += RH + RG;
+  });
+});
+</script>
+</body>
+</html>
