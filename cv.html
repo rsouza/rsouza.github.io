@@ -52,6 +52,36 @@ img { max-width: 100%; display: block; }
 .sec-sub { font-size: 15.5px; color: var(--muted); max-width: 600px; margin-bottom: 44px; }
 .sec-sub.on-dark { color: #94a3b8; }
 
+/* ===== DISCLOSURES ===== */
+.section-disclosure { margin-top: 28px; }
+.section-disclosure > summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  cursor: pointer; list-style: none; user-select: none;
+  font-size: 12px; font-weight: 700; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--accent2);
+  padding: 12px 15px; border: 1px solid var(--border); border-radius: 8px;
+  background: rgba(255,255,255,0.72); transition: background 0.18s, border-color 0.18s;
+}
+.section-disclosure > summary::-webkit-details-marker { display: none; }
+.section-disclosure > summary::after { content: '+'; font-size: 20px; font-weight: 400; line-height: 1; }
+.section-disclosure[open] > summary::after { content: '\2212'; }
+.section-disclosure > summary:hover,
+.section-disclosure > summary:focus-visible { background: white; border-color: var(--accent2); }
+.section-disclosure > summary:focus-visible { outline: 3px solid rgba(14,165,233,0.3); outline-offset: 3px; }
+.section-disclosure > .disclosure-content { padding-top: 28px; }
+#education .section-disclosure > summary,
+#projects .section-disclosure > summary { color: var(--accent); background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.12); }
+#education .section-disclosure > summary:hover,
+#education .section-disclosure > summary:focus-visible,
+#projects .section-disclosure > summary:hover,
+#projects .section-disclosure > summary:focus-visible { background: rgba(56,189,248,0.08); border-color: rgba(56,189,248,0.45); }
+button:focus-visible, a:focus-visible { outline: 3px solid rgba(56,189,248,0.55); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  .fade-up { opacity: 1; transform: none; }
+}
+
 .fade-up { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
 .fade-up.in { opacity: 1; transform: none; }
 
@@ -480,6 +510,9 @@ img { max-width: 100%; display: block; }
       <h2 class="sec-title on-dark">Education</h2>
       <p class="sec-sub on-dark">Formal education spanning three countries, from electrical engineering to information science and computer science.</p>
     </div>
+    <details class="section-disclosure" open>
+      <summary>View education and certifications</summary>
+      <div class="disclosure-content">
     <div class="edu-timeline fade-up">
       <div class="edu-entry">
         <div class="edu-year">1993</div>
@@ -554,6 +587,8 @@ img { max-width: 100%; display: block; }
         <div class="cert-card"><div class="cert-prov">ENS Paris &middot; 2011</div><div class="cert-name">Python Advanced Tutorial</div></div>
       </div>
     </div>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -565,6 +600,9 @@ img { max-width: 100%; display: block; }
       <h2 class="sec-title on-light">Research &amp; Publications</h2>
       <p class="sec-sub">Selected publications across AI, NLP, information science, and digital humanities. Full list on Lattes CV and Google Scholar.</p>
     </div>
+    <details class="section-disclosure" open>
+      <summary>View selected publications</summary>
+      <div class="disclosure-content">
     <p class="research-note fade-up">Selected highlights from 186+ publications indexed on <a href="https://orcid.org/0000-0002-1895-3905" target="_blank" style="color:var(--accent)">ORCID</a> spanning journal articles, conference papers, and book chapters. Full list also on <a href="http://buscatextual.cnpq.br/buscatextual/visualizacv.jsp?id=K4772744U7" target="_blank" style="color:var(--accent)">Lattes CV</a> and <a href="https://scholar.google.com/citations?user=bbDwLPAAAAAJ" target="_blank" style="color:var(--accent)">Google Scholar</a>.</p>
     <div class="pub-grid fade-up">
       <div class="pub-card">
@@ -675,6 +713,8 @@ img { max-width: 100%; display: block; }
     <div class="fade-up" style="text-align:center;margin-top:28px;">
       <a href="https://orcid.org/0000-0002-1895-3905" target="_blank" style="display:inline-block;padding:10px 28px;border:1.5px solid var(--accent);color:var(--accent);border-radius:6px;font-size:13.5px;font-weight:600;text-decoration:none;letter-spacing:0.3px;">View all 186+ publications on ORCID &rarr;</a>
     </div>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -686,6 +726,9 @@ img { max-width: 100%; display: block; }
       <h2 class="sec-title on-dark">Notable Projects</h2>
       <p class="sec-sub on-dark">Research initiatives, applied projects, and institutional programmes across career.</p>
     </div>
+    <details class="section-disclosure" open>
+      <summary>View selected projects</summary>
+      <div class="disclosure-content">
     <div class="proj-grid fade-up">
       <div class="proj-card">
         <div class="proj-badge">Columbia University &middot; NSF</div>
@@ -748,6 +791,8 @@ img { max-width: 100%; display: block; }
         <div class="proj-desc">Led data modeling and text mining infrastructure for analyzing millions of judicial decisions from the Brazilian Supreme Court (STF). Extracted semantic patterns in judicial votes, mapped lawyer-client networks, and provided empirical foundations for legal scholars.</div>
       </div>
     </div>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -759,6 +804,9 @@ img { max-width: 100%; display: block; }
       <h2 class="sec-title on-light">Teaching</h2>
       <p class="sec-sub">Courses taught at graduate and undergraduate levels across three countries.</p>
     </div>
+    <details class="section-disclosure" open>
+      <summary>View teaching experience</summary>
+      <div class="disclosure-content">
     <div class="teaching-grid fade-up">
       <div class="t-col">
         <h3>Courses</h3>
@@ -802,6 +850,8 @@ img { max-width: 100%; display: block; }
         </div>
       </div>
     </div>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -813,6 +863,9 @@ img { max-width: 100%; display: block; }
       <h2 class="sec-title on-light">Affiliations &amp; Recognitions</h2>
       <p class="sec-sub">Professional associations, boards, awards, editorial service, and selected consulting engagements.</p>
     </div>
+    <details class="section-disclosure" open>
+      <summary>View affiliations and service</summary>
+      <div class="disclosure-content">
     <div class="service-grid fade-up">
       <div class="s-col">
         <h3>Associations &amp; Boards</h3>
@@ -905,6 +958,8 @@ img { max-width: 100%; display: block; }
         </div>
       </div>
     </div>
+      </div>
+    </details>
   </div>
 </section>
 
